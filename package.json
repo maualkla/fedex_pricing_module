@@ -1,5 +1,5 @@
 {
-  "name": "fedex_pricing_module",
+  "name": "@my-org/fedex_pricing_module",
   "version": "1.0.0",
   "description": "Calls to Fedex and retrieves the pricing data.",
   "main": "index.js",
