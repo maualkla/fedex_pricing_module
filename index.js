@@ -81,6 +81,7 @@ exports.getPricing = function(credentials, quote_params){
     '</RequestedShipment>'+
   '</RateRequest>';
 
+  console.log(xmlBlock);
   console.log("xmlObject Done");
   const callObj = {};
   callObj.host = 'https://wsbeta.fedex.com';
