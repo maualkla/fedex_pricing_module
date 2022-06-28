@@ -110,7 +110,7 @@ exports.getPricing = function(credentials, quote_params){
     res.on( "end", function( data ) { console.log( buffer ); } );
   });
   console.log(req);
-  return res.statusCode;
+  //return res.statusCode;
 }
 
 
