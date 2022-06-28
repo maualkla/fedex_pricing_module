@@ -27,7 +27,7 @@ exports.getPricing = function(credentials, quote_params){
       '<AccountNumber>'+ xmlValues.accountNumber +'</AccountNumber>'+
       '<MeterNumber>' + xmlValues.meterNumber + '</MeterNumber>'+
       '<Localization>'+
-        '<LanguageCode>' + xmlValues.LanguajeCode + '</LanguageCode>'+
+        '<LanguageCode>' + xmlValues.LanguageCode + '</LanguageCode>'+
         '<LocaleCode>' + xmlValues.LocaleCode + '</LocaleCode>'+
       '</Localization>'+
     '</ClientDetail>'+
