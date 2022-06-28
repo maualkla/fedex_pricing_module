@@ -114,16 +114,16 @@ exports.getPricing = function(credentials, quote_params){
     var buffer = "";
     res.on( "data", function( data ) { buffer = buffer + data; } );
     res.on( "end", function( data ) {
-      let json = {};
+
       // XML to JSON conversion using xml2js
       xml2js.parseString(buffer, (err, result) => {
           if(err) {
               throw err;
           }
-          json = JSON.stringify(result, null, 4); 
-      });
-      // Return json object
-      return json;
+          const json = JSON.stringify(result, null, 4);
+          // Return json object
+          return json;
+        });
     });
   });
 
