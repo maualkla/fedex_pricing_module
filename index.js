@@ -99,8 +99,8 @@ exports.getPricing = function(credentials, quote_params){
     method: callObj.method,
     headers: {
         'Cookie': "cookie",
-        //'Content-Type': 'text/xml'
-        'Content-Type': 'application/xml',
+        'Content-Type': 'text/xml',
+        //'Content-Type': 'application/xml',
         'Content-Length': bytes//,
         //'Accept-Encoding': "gzip, deflate, br"
     }
