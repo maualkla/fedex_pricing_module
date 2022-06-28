@@ -1,3 +1,6 @@
+const https = require('https');
+const fs = require('fs'); 
+{ parseString } = require "xml2js"; 
 
 exports.getPricing = function(credentials, quote_params){
 
@@ -108,7 +111,7 @@ exports.getPricing = function(credentials, quote_params){
   }
   console.log(postRequest);
 
-  const https = require('https');
+
 
   console.log("GO to POST")
   const req = https.request(postRequest, function (res) {
@@ -123,15 +126,12 @@ exports.getPricing = function(credentials, quote_params){
         process.stdout.write(d);
       });
     console.log(buffer);
-
-    import fs from "fs"; 
-    import { parseString } from "xml2js"; 
     
     parseString(buffer, function (err, results) {
 
       let data = JSON.stringify(results)
       console.log("results",data);
-      
+
     });
 
 
