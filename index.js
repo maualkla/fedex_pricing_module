@@ -81,10 +81,11 @@ exports.getPricing = function(credentials, quote_params){
     '</RequestedShipment>'+
   '</RateRequest>';
 
+  console.log("xmlObject Done");
   const callObj = {};
-  callObj.host = 'https://wsbeta.fedex.com:443';
+  callObj.host = 'https://wsbeta.fedex.com';
   callObj.path = '/xml';
-  //callObj.port = 443;
+  callObj.port = 443;
   callObj.method = 'POST';
 
   const postRequest = {
@@ -97,19 +98,19 @@ exports.getPricing = function(credentials, quote_params){
         'Content-Type': 'text/xml'
     }
   }
+  console.log(postRequest);
 
-  const http = require('https');
+  const https = require('https');
 
-  const req = http.request( postRequest, function( res )    {
+  const req = https.request( postRequest, function( res )    {
 
     console.log( res.statusCode );
     var buffer = "";
     res.on( "data", function( data ) { buffer = buffer + data; } );
     res.on( "end", function( data ) { console.log( buffer ); } );
-
   });
-
-  console.table(req);
+  console.log(req);
+  return res.statusCode;
 }
 
 
