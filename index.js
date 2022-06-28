@@ -84,10 +84,10 @@ exports.getPricing = function(credentials, quote_params){
     '</RequestedShipment>'+
   '</RateRequest>';
 
-  console.log(xmlBlock);
-  console.log("xmlObject Done");
+  //console.log(xmlBlock);
+  //console.log("xmlObject Done");
   const bytes = Buffer.byteLength(xmlBlock, "utf-8");
-  console.log("Bytes: " + bytes)
+  //console.log("Bytes: " + bytes)
 
   const callObj = {};
   callObj.host = 'wsbeta.fedex.com';
@@ -109,36 +109,36 @@ exports.getPricing = function(credentials, quote_params){
         //'Accept-Encoding': "gzip, deflate, br"
     }
   }
-  console.log(postRequest);
+  //console.log(postRequest);
 
 
 
-  console.log("GO to POST")
+  //console.log("GO to POST")
   const req = https.request(postRequest, function (res) {
-    console.log("Entramos al llamado req.")
-    console.log("statusCode: " + res.statusCode);
+    //console.log("Entramos al llamado req.")
+    //console.log("statusCode: " + res.statusCode);
 
     var buffer = "";
     res.on( "data", function( data ) { buffer = buffer + data; } );
     res.on( "end", function( data ) {
-      console.log( "------> Buffer: " + buffer ); 
+      //console.log( "------> Buffer: " + buffer ); 
       xml2js.parseString(buffer, (err, result) => {
           if(err) {
               throw err;
           }
           const json = JSON.stringify(result, null, 4);
-          console.log(">>>>>>>>> JSON OFICIAL: ")
-          console.log(json);
-          return json;
+          //console.log(">>>>>>>>> JSON OFICIAL: ")
+          //console.log(json);
+          return JSON.stringify(result, null, 4);
         });
     });
   });
   req.on('error', (e) => {
-      console.error(e);
+      //console.error(e);
   });
-  console.log("OUT POST");
+  //console.log("OUT POST");
   req.write( xmlBlock );
-  console.log("Se mando XML");
+  //console.log("Se mando XML");
   req.end();
-  console.log("req.end fuera del flujo");
+  //console.log("req.end fuera del flujo");
 }
