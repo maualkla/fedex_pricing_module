@@ -127,21 +127,13 @@ exports.getPricing = function(credentials, quote_params){
     });
     console.log(buffer);
     
-    var extractedData = "";
-    var parser = new xml2js.Parser();
-    parser.parseString(buffer, function(err,result){
-      extractedData = result['config']['data'];
-      console.log(extractedData);
+    xml2js.parseString(buffer, (err, result) => {
+      if(err) {
+          throw err;
+      }
+      const json = JSON.stringify(result, null, 4);
+      console.log(json);
     });
-    console.log("Note that you can't use value here if parseString is async; extractedData=", extractedData);
-
-
-  //  parseString(buffer, function (err, results) {
-  //
-  //    let data = JSON.stringify(results)
-  //    console.log("results",data);
-  //
-  //  });
 
 
     //return res;
