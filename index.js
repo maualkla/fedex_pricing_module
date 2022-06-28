@@ -98,7 +98,7 @@ exports.getPricing = function(credentials, quote_params){
     port: callObj.port,
     method: callObj.method,
     headers: {
-        'Cookie': "cookie",
+        'Cookie': "siteDC=edc",//"cookie",
         //'Content-Type': 'text/xml'//,
         'Content-Type': 'application/xml',
         'Content-Length': bytes,
@@ -132,6 +132,8 @@ exports.getPricing = function(credentials, quote_params){
       console.error(e);
   });
   console.log("OUT POST");
+  req.write( xmlBlock );
+  console.log("Se mando XML");
   req.end();
   console.log("req.end fuera del flujo");
 }
