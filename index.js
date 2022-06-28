@@ -120,21 +120,18 @@ exports.getPricing = function(credentials, quote_params){
 
     var buffer = "";
     res.on( "data", function( data ) { buffer = buffer + data; } );
-    res.on( "end", function( data ) { console.log( "------> Buffer: " + buffer ); } );
-    res.on('data', (d) => {
-      //console.log(d);
-      process.stdout.write(d);
+    res.on( "end", function( data ) {
+      console.log( "------> Buffer: " + buffer ); 
       xml2js.parseString(buffer, (err, result) => {
-        if(err) {
-            throw err;
-        }
-        const json = JSON.stringify(result, null, 4);
-        console.log(">>>>>>>>> JSON OFICIAL: ")
-        console.log(json);
-      });
+          if(err) {
+              throw err;
+          }
+          const json = JSON.stringify(result, null, 4);
+          console.log(">>>>>>>>> JSON OFICIAL: ")
+          console.log(json);
+          return json;
+        });
     });
-    //console.log(buffer);
-    //return res;
   });
   req.on('error', (e) => {
       console.error(e);
