@@ -98,7 +98,7 @@ exports.getPricing = function(credentials, quote_params){
     }
   }
 
-  const https = require('https');
+  const http = require('https');
 
   const req = http.request( postRequest, function( res )    {
 
