@@ -84,7 +84,7 @@ exports.getPricing = function(credentials, quote_params){
   console.log(xmlBlock);
   console.log("xmlObject Done");
   const callObj = {};
-  callObj.host = 'https://wsbeta.fedex.com';
+  callObj.host = 'wsbeta.fedex.com';
   callObj.path = '/xml';
   callObj.port = 443;
   callObj.method = 'POST';
