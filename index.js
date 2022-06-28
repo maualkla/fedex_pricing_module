@@ -114,28 +114,13 @@ exports.getPricing = function(credentials, quote_params){
   const req = https.request(postRequest, function (res) {
     console.log("Entramos al llamado req.")
     console.log("statusCode: " + res.statusCode);
-    console.log("-------> RES <---------");
-    console.log(res);
 
-  //  var buffer = res.cert.raw;
-  //  const buf = new Buffer(buffer, 'utf8');
-  //  const json = buf.toString('UTF-8',0,5) //JSON.stringify(buf);
-  //  res.send(json);
-  //  const copy = JSON.parse(json, (key, json) => {
-  //    return json && json.type === 'Buffer'
-  //      ? new Buffer(json.data)
-  //      : json;
-  //  });
-
- //     console.log('statusCode:', res.statusCode);
- //     console.log('headers:', res.headers);
-
- //   var buffer = "";
- //   res.on( "data", function( data ) { buffer = buffer + data; } );
- //   res.on( "end", function( data ) { console.log( buffer ); } );
- //   res.on('data', (d) => {
- //       process.stdout.write(d);
- //     });
+    var buffer = "";
+    res.on( "data", function( data ) { buffer = buffer + data; } );
+    //res.on( "end", function( data ) { console.log( buffer ); } );
+    //res.on('data', (d) => {
+    //    process.stdout.write(d);
+    //  });
 
  //     return res;
     });
