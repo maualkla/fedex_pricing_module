@@ -83,6 +83,9 @@ exports.getPricing = function(credentials, quote_params){
 
   console.log(xmlBlock);
   console.log("xmlObject Done");
+  const bytes = Buffer.byteLength(xmlBlock, "utf-8");
+  console.log("Bytes: " + bytes)
+
   const callObj = {};
   callObj.host = 'wsbeta.fedex.com';
   callObj.path = '/xml';
@@ -96,7 +99,10 @@ exports.getPricing = function(credentials, quote_params){
     method: callObj.method,
     headers: {
         'Cookie': "cookie",
-        'Content-Type': 'text/xml'
+        //'Content-Type': 'text/xml'
+        'Content-Type': 'application/xml',
+        'Content-Length': bytes,
+        'Accept-Encoding': "gzip, deflate, br"
     }
   }
   console.log(postRequest);
