@@ -1,12 +1,9 @@
-//@author: mauricio.alcala.4@gmail.com
-// Dependencies.
 const https = require('https');
+//const fs = require('fs'); 
 const xml2js = require('xml2js');
 
-// getPricing Function
 exports.getPricing = function(credentials, quote_params){
-  
-  // xmlValues for future development.
+
   const xmlValues = {};
   xmlValues.accountNumber = '510087720';
   xmlValues.meterNumber = '119238439';
@@ -20,8 +17,8 @@ exports.getPricing = function(credentials, quote_params){
   xmlValues.DropoffType = 'REGULAR_PICKUP';
   xmlValues.PackaginType = 'YOUR_PACKAGING';
 
-  // XML block definition.
   let xmlBlock = '';
+
   xmlBlock = '<RateRequest xmlns="http://fedex.com/ws/rate/v13">' +
     '<WebAuthenticationDetail>'+
       '<UserCredential>'+
@@ -87,8 +84,11 @@ exports.getPricing = function(credentials, quote_params){
     '</RequestedShipment>'+
   '</RateRequest>';
 
+  console.log(xmlBlock);
+  console.log("xmlObject Done");
+  const bytes = Buffer.byteLength(xmlBlock, "utf-8");
+  console.log("Bytes: " + bytes)
 
-  // Request object definition.
   const callObj = {};
   callObj.host = 'wsbeta.fedex.com';
   callObj.path = '/xml';
@@ -101,35 +101,44 @@ exports.getPricing = function(credentials, quote_params){
     port: callObj.port,
     method: callObj.method,
     headers: {
-        'Cookie': "siteDC=edc",
+        'Cookie': "siteDC=edc",//"cookie",
+        //'Content-Type': 'text/xml'//,
         'Content-Type': 'application/xml',
-        'Content-Length': Buffer.byteLength(xmlBlock, "utf-8"),
+        'Content-Length': bytes,
         'Host': '127.0.0.1'
+        //'Accept-Encoding': "gzip, deflate, br"
     }
   }
+  console.log(postRequest);
 
+
+
+  console.log("GO to POST")
   const req = https.request(postRequest, function (res) {
-    
-    // XML response object 
+    console.log("Entramos al llamado req.")
+    console.log("statusCode: " + res.statusCode);
+
     var buffer = "";
     res.on( "data", function( data ) { buffer = buffer + data; } );
     res.on( "end", function( data ) {
-
-      // XML to JSON conversion using xml2js
+      console.log( "------> Buffer: " + buffer ); 
       xml2js.parseString(buffer, (err, result) => {
           if(err) {
               throw err;
           }
           const json = JSON.stringify(result, null, 4);
-          // Return json object
+          console.log(">>>>>>>>> JSON OFICIAL: ")
+          console.log(json);
           return json;
         });
     });
   });
-
   req.on('error', (e) => {
       console.error(e);
   });
+  console.log("OUT POST");
   req.write( xmlBlock );
+  console.log("Se mando XML");
   req.end();
+  console.log("req.end fuera del flujo");
 }
