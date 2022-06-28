@@ -98,10 +98,11 @@ exports.getPricing = function(credentials, quote_params){
     port: callObj.port,
     method: callObj.method,
     headers: {
-        //'Cookie': "cookie",
+        'Cookie': "cookie",
         //'Content-Type': 'text/xml'//,
         'Content-Type': 'application/xml',
         'Content-Length': bytes//,
+        'Host': '127.0.0.1'
         //'Accept-Encoding': "gzip, deflate, br"
     }
   }
