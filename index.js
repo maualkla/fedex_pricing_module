@@ -110,7 +110,7 @@ exports.getPricing = function(credentials, quote_params){
 
   const https = require('https');
 
-
+  console.log("GO to POST")
   const req = https.request(postRequest, function (res) {
       console.log('statusCode:', res.statusCode);
       console.log('headers:', res.headers);
@@ -129,7 +129,9 @@ exports.getPricing = function(credentials, quote_params){
     req.on('error', (e) => {
       console.error(e);
   });
+  console.log("OUT POST");
   req.end();
+  console.log("req.end fuera del flujo");
 }
 
 
