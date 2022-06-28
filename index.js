@@ -102,16 +102,25 @@ exports.getPricing = function(credentials, quote_params){
 
   const https = require('https');
 
-  const req = https.request( postRequest, function( res )    {
+  const req = https.request(options, (res) => {
+    console.log('statusCode:', res.statusCode);
+    console.log('headers:', res.headers);
 
-    console.log( res.statusCode );
-    var buffer = "";
-    res.on( "data", function( data ) { buffer = buffer + data; } );
-    res.on( "end", function( data ) { console.log( buffer ); } );
+    res.on('data', (d) => {
+      process.stdout.write(d);
+    });
   });
-  console.log(req);
+
+  req.on('error', (e) => {
+    console.error(e);
+  });
+  req.end();
+
+  //console.log(req);
   //return res.statusCode;
 }
+
+
 
 
 
