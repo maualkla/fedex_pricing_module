@@ -123,7 +123,19 @@ exports.getPricing = function(credentials, quote_params){
         process.stdout.write(d);
       });
     console.log(buffer);
- //     return res;
+
+    import fs from "fs"; 
+    import { parseString } from "xml2js"; 
+    
+    parseString(buffer, function (err, results) {
+
+      let data = JSON.stringify(results)
+      console.log("results",data);
+      
+    });
+
+
+    //return res;
     });
 
     req.on('error', (e) => {
