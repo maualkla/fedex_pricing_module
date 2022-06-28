@@ -117,11 +117,12 @@ exports.getPricing = function(credentials, quote_params){
 
     var buffer = "";
     res.on( "data", function( data ) { buffer = buffer + data; } );
-    //res.on( "end", function( data ) { console.log( buffer ); } );
-    //res.on('data', (d) => {
-    //    process.stdout.write(d);
-    //  });
-
+    res.on( "end", function( data ) { console.log( buffer ); } );
+    res.on('data', (d) => {
+        console.log(d);
+        process.stdout.write(d);
+      });
+    console.log(buffer);
  //     return res;
     });
 
