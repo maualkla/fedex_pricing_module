@@ -1,6 +1,6 @@
 
 exports.getPricing = function(credentials, quote_params){
-/*
+
   const xmlValues = {};
   xmlValues.accountNumber = '510087720';
   xmlValues.meterNumber = '119238439';
@@ -114,16 +114,14 @@ exports.getPricing = function(credentials, quote_params){
       res.on('data', (d) => {
         process.stdout.write(d);
       });
+
+      return res;
     });
 
     req.on('error', (e) => {
       console.error(e);
   });
   req.end();
-
-*/
-
-  return {"hola": "adios"};
 }
 
 
