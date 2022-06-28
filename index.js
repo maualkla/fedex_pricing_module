@@ -82,9 +82,9 @@ exports.getPricing = function(credentials, quote_params){
   '</RateRequest>';
 
   const callObj = {};
-  callObj.host = 'https://wsbeta.fedex.com';
+  callObj.host = 'https://wsbeta.fedex.com:443';
   callObj.path = '/xml';
-  callObj.port = 443;
+  //callObj.port = 443;
   callObj.method = 'POST';
 
   const postRequest = {
