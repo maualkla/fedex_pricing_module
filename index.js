@@ -1,6 +1,6 @@
 const https = require('https');
-const fs = require('fs'); 
-const parseString = require('xml2js').parseString;
+//const fs = require('fs'); 
+const xml2js = require('xml2js');
 
 exports.getPricing = function(credentials, quote_params){
 
@@ -121,18 +121,28 @@ exports.getPricing = function(credentials, quote_params){
     var buffer = "";
     res.on( "data", function( data ) { buffer = buffer + data; } );
     res.on( "end", function( data ) { console.log( buffer ); } );
-    res.on('data', (d) => {
-        console.log(d);
-        process.stdout.write(d);
-      });
+    //res.on('data', (d) => {
+    // console.log(d);
+    // process.stdout.write(d);
+    //});
     console.log(buffer);
     
-    parseString(buffer, function (err, results) {
-
-      let data = JSON.stringify(results)
-      console.log("results",data);
-
+    var extractedData = "";
+    var parser = new xml2js.Parser();
+    parser.parseString(buffer, function(err,result){
+      //Extract the value from the data element
+      extractedData = result['config']['data'];
+      console.log(extractedData);
     });
+    console.log("Note that you can't use value here if parseString is async; extractedData=", extractedData);
+
+
+  //  parseString(buffer, function (err, results) {
+  //
+  //    let data = JSON.stringify(results)
+  //    console.log("results",data);
+  //
+  //  });
 
 
     //return res;
