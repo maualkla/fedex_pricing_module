@@ -1,6 +1,6 @@
 const https = require('https');
 const fs = require('fs'); 
-{ parseString } = require "xml2js"; 
+{parseString} = require 'xml2js'; 
 
 exports.getPricing = function(credentials, quote_params){
 
@@ -147,6 +147,3 @@ exports.getPricing = function(credentials, quote_params){
   req.end();
   console.log("req.end fuera del flujo");
 }
-
-
-
