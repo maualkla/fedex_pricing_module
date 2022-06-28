@@ -113,15 +113,14 @@ exports.getPricing = function(credentials, quote_params){
   console.log("GO to POST")
   const req = https.request(postRequest, function (res) {
     console.log("Entramos al llamado req.")
-    console.log(res);
+    console.log("statusCode: " + res.statusCode);
  //     console.log('statusCode:', res.statusCode);
  //     console.log('headers:', res.headers);
 
- //     var buffer = "";
- //     res.on( "data", function( data ) { buffer = buffer + data; } );
- //     res.on( "end", function( data ) { console.log( buffer ); } );
-
- //     res.on('data', (d) => {
+ //   var buffer = "";
+ //   res.on( "data", function( data ) { buffer = buffer + data; } );
+ //   res.on( "end", function( data ) { console.log( buffer ); } );
+ //   res.on('data', (d) => {
  //       process.stdout.write(d);
  //     });
 
