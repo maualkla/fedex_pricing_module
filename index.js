@@ -114,12 +114,10 @@ exports.getPricing = function(credentials, quote_params){
   const req = https.request(postRequest, function (res) {
     console.log("Entramos al llamado req.")
     console.log("statusCode: " + res.statusCode);
-    
-    console.log("RES.CERT");
-    console.log(res.cert);
-    console.log("REST.CERT.raw");
-    console.log(res.cert.raw);
-    var buffer = res.cert.raw;
+    console.log("-------> RES <---------");
+    console.log(res);
+
+  //  var buffer = res.cert.raw;
   //  const buf = new Buffer(buffer, 'utf8');
   //  const json = buf.toString('UTF-8',0,5) //JSON.stringify(buf);
   //  res.send(json);
