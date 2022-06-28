@@ -112,8 +112,7 @@ exports.getPricing = function(credentials, quote_params){
 
   console.log("GO to POST")
   const req = https.request(postRequest, function (res) {
-    
-    console.log("Entramos al llamado req.");
+    console.log("Entramos al llamado req.")
     console.log(res);
  //     console.log('statusCode:', res.statusCode);
  //     console.log('headers:', res.headers);
@@ -127,14 +126,11 @@ exports.getPricing = function(credentials, quote_params){
  //     });
 
  //     return res;
- //   });
-  }
+    });
 
-  req.on('error', (e) => {
-    console.error(e);
+    req.on('error', (e) => {
+      console.error(e);
   });
-  
-  console.log(req);
   console.log("OUT POST");
   req.end();
   console.log("req.end fuera del flujo");
