@@ -128,12 +128,13 @@ exports.getPricing = function(credentials, quote_params){
 
  //     return res;
  //   });
-
-    req.on('error', (e) => {
-      console.error(e);
-    });
   }
+
+  req.on('error', (e) => {
+    console.error(e);
+  });
   
+  console.log(req);
   console.log("OUT POST");
   req.end();
   console.log("req.end fuera del flujo");
