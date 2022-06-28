@@ -112,8 +112,8 @@ exports.getPricing = function(credentials, quote_params){
     
     // XML response object 
     var buffer = "";
-    res.on( "data", function( data ) { buffer = buffer + data; } );
-    res.on( "end", function( data ) {
+    res.on( "data", function( data ) { 
+      buffer = buffer + data; 
       let json = {};
       // XML to JSON conversion using xml2js
       xml2js.parseString(buffer, (err, result) => {
@@ -124,7 +124,7 @@ exports.getPricing = function(credentials, quote_params){
       });
       // Return json object
       return json;
-    });
+    } );
   });
 
   req.on('error', (e) => {
