@@ -101,7 +101,7 @@ exports.getPricing = function(credentials, quote_params){
         'Cookie': "cookie",
         //'Content-Type': 'text/xml'//,
         'Content-Type': 'application/xml',
-        'Content-Length': bytes//,
+        'Content-Length': bytes,
         'Host': '127.0.0.1'
         //'Accept-Encoding': "gzip, deflate, br"
     }
