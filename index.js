@@ -112,8 +112,11 @@ exports.getPricing = function(credentials, quote_params){
 
   console.log("GO to POST")
   const req = https.request(postRequest, function (res) {
-      console.log('statusCode:', res.statusCode);
-      console.log('headers:', res.headers);
+    
+    console.log("Entramos al llamado req.");
+    console.log(res);
+ //     console.log('statusCode:', res.statusCode);
+ //     console.log('headers:', res.headers);
 
  //     var buffer = "";
  //     res.on( "data", function( data ) { buffer = buffer + data; } );
@@ -123,12 +126,14 @@ exports.getPricing = function(credentials, quote_params){
  //       process.stdout.write(d);
  //     });
 
-      return res;
-    });
+ //     return res;
+ //   });
 
     req.on('error', (e) => {
       console.error(e);
-  });
+    });
+  }
+  
   console.log("OUT POST");
   req.end();
   console.log("req.end fuera del flujo");
