@@ -1,6 +1,6 @@
 const https = require('https');
 const fs = require('fs'); 
-{parseString} = require 'xml2js'; 
+const parseString = require('xml2js').parseString;
 
 exports.getPricing = function(credentials, quote_params){
 
