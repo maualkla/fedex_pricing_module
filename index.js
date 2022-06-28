@@ -1,5 +1,4 @@
 const https = require('https');
-//const fs = require('fs'); 
 const xml2js = require('xml2js');
 
 exports.getPricing = function(credentials, quote_params){
@@ -84,11 +83,6 @@ exports.getPricing = function(credentials, quote_params){
     '</RequestedShipment>'+
   '</RateRequest>';
 
-  //console.log(xmlBlock);
-  //console.log("xmlObject Done");
-  const bytes = Buffer.byteLength(xmlBlock, "utf-8");
-  //console.log("Bytes: " + bytes)
-
   const callObj = {};
   callObj.host = 'wsbeta.fedex.com';
   callObj.path = '/xml';
@@ -101,44 +95,33 @@ exports.getPricing = function(credentials, quote_params){
     port: callObj.port,
     method: callObj.method,
     headers: {
-        'Cookie': "siteDC=edc",//"cookie",
-        //'Content-Type': 'text/xml'//,
+        'Cookie': "siteDC=edc",
         'Content-Type': 'application/xml',
-        'Content-Length': bytes,
+        'Content-Length': Buffer.byteLength(xmlBlock, "utf-8"),
         'Host': '127.0.0.1'
-        //'Accept-Encoding': "gzip, deflate, br"
     }
   }
-  //console.log(postRequest);
 
-
-
-  //console.log("GO to POST")
   const req = https.request(postRequest, function (res) {
-    //console.log("Entramos al llamado req.")
-    //console.log("statusCode: " + res.statusCode);
+    console.log("statusCode: " + res.statusCode);
 
     var buffer = "";
     res.on( "data", function( data ) { buffer = buffer + data; } );
     res.on( "end", function( data ) {
-      //console.log( "------> Buffer: " + buffer ); 
       xml2js.parseString(buffer, (err, result) => {
           if(err) {
               throw err;
           }
           const json = JSON.stringify(result, null, 4);
-          //console.log(">>>>>>>>> JSON OFICIAL: ")
-          //console.log(json);
-          return {"hola": "adios"};
+          console.log(json);
+          return json;
         });
     });
   });
   req.on('error', (e) => {
-      //console.error(e);
+      console.error(e);
   });
-  //console.log("OUT POST");
   req.write( xmlBlock );
-  //console.log("Se mando XML");
   req.end();
-  //console.log("req.end fuera del flujo");
+
 }
