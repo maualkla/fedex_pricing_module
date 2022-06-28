@@ -114,13 +114,13 @@ exports.getPricing = function(credentials, quote_params){
       console.log('statusCode:', res.statusCode);
       console.log('headers:', res.headers);
 
-      var buffer = "";
-      res.on( "data", function( data ) { buffer = buffer + data; } );
-      res.on( "end", function( data ) { console.log( buffer ); } );
+ //     var buffer = "";
+ //     res.on( "data", function( data ) { buffer = buffer + data; } );
+ //     res.on( "end", function( data ) { console.log( buffer ); } );
 
-      res.on('data', (d) => {
-        process.stdout.write(d);
-      });
+ //     res.on('data', (d) => {
+ //       process.stdout.write(d);
+ //     });
 
       return res;
     });
