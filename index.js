@@ -129,7 +129,7 @@ exports.getPricing = function(credentials, quote_params){
           const json = JSON.stringify(result, null, 4);
           //console.log(">>>>>>>>> JSON OFICIAL: ")
           //console.log(json);
-          return json;
+          return {"hola": "adios"};
         });
     });
   });
